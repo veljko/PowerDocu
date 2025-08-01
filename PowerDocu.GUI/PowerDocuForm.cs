@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using PowerDocu.AppDocumenter;
 using PowerDocu.SolutionDocumenter;
 using PowerDocu.Common;
+using System.Linq;
 
 namespace PowerDocu.GUI
 {
@@ -195,6 +196,12 @@ namespace PowerDocu.GUI
             startDocumentation(false);
         }
 
+        private void openOutputFolderButton_Click(object sender, EventArgs e)
+        {
+            string outputFolder = Path.GetDirectoryName(openFileToParseDialog.FileNames[0]);
+            System.Diagnostics.Process.Start("explorer.exe", outputFolder);
+        }
+
         //fullDocumentation = true to start full documentation generation , false to start image generation
         private void startDocumentation(bool fullDocumentation = true)
         {
@@ -206,6 +213,7 @@ namespace PowerDocu.GUI
             startImageGenerationButton.Enabled = false;
             startDocumentationButton.IconColor = Color.DarkGray;
             startImageGenerationButton.IconColor = Color.DarkGray;
+            openOutputFolderButton.Visible = false;
             foreach (string fileName in openFileToParseDialog.FileNames)
             {
                 try
@@ -233,6 +241,7 @@ namespace PowerDocu.GUI
                             configHelper
                         );
                     }
+                    openOutputFolderButton.Visible = true;
                     NotificationHelper.SendNotification("Documentation generation completed.");
                     statusLabel.Text = $"Documentation process completed";
                 }

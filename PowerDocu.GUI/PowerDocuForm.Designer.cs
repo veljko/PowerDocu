@@ -204,7 +204,7 @@ namespace PowerDocu.GUI
                 AutoSize = true
             };
             settingsPanel.Controls.Add(documentationOptionsGroup);
-              // Solutions Checkbox
+            // Solutions Checkbox
             solutionCheckBox = new CheckBox()
             {
                 Text = "Solution",
@@ -494,7 +494,7 @@ namespace PowerDocu.GUI
                 Width = convertToDPISpecific(450),
                 Height = convertToDPISpecific(60),
                 AutoSize = true,
-                Font= new Font(this.Font.FontFamily,1.5f*this.Font.Size)
+                Font = new Font(this.Font.FontFamily, 1.5f * this.Font.Size)
             };
             generateDocuPanel.Controls.Add(powerDocuInfoLabel);
 
@@ -549,7 +549,19 @@ namespace PowerDocu.GUI
                 Visible = false
             };
             startImageGenerationButton.Click += new EventHandler(StartImageGenerationButton_Click);
-            generateDocuPanel.Controls.Add(startImageGenerationButton);            
+            generateDocuPanel.Controls.Add(startImageGenerationButton);
+            openOutputFolderButton = new IconButton()
+            {
+                Size = new Size(convertToDPISpecific(42), convertToDPISpecific(42)),
+                Location = new Point(convertToDPISpecific(15), startImageGenerationButton.Location.Y + startImageGenerationButton.Height + convertToDPISpecific(0)),
+                IconChar = IconChar.FolderOpen,
+                IconColor = Color.Orange,
+                IconSize = convertToDPISpecific(32),
+                IconFont = IconFont.Auto,
+                Visible = false
+            };
+            openOutputFolderButton.Click += new EventHandler(openOutputFolderButton_Click);
+            generateDocuPanel.Controls.Add(openOutputFolderButton);
             selectedFilesToDocumentLabel = new Label()
             {
                 Location = new Point(convertToDPISpecific(30) + startDocumentationButton.Width, selectFileToParseButton.Location.Y + selectFileToParseButton.Height + convertToDPISpecific(25)),
@@ -570,7 +582,7 @@ namespace PowerDocu.GUI
             return (int)number * this.DeviceDpi / 96;
         }
 
-        private IconButton selectFileToParseButton, selectWordTemplateButton, newReleaseButton, updateConnectorIconsButton, saveConfigButton, startDocumentationButton, startImageGenerationButton, clearWordTemplateButton;
+        private IconButton selectFileToParseButton, selectWordTemplateButton, newReleaseButton, updateConnectorIconsButton, saveConfigButton, startDocumentationButton, startImageGenerationButton, clearWordTemplateButton, openOutputFolderButton;
         private OpenFileDialog openFileToParseDialog, openWordTemplateDialog;
         private TextBox appStatusTextBox;
         private ComboBox outputFormatComboBox, flowActionSortOrderComboBox;
